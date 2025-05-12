@@ -5,7 +5,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:bookbazaar/models/book_model.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.38.8:7000/api/book';
+  static const String baseUrl = 'http://192.168.17.8:7000/api/book';
 
   static Future<List<Book>> seachBook(String Query) async {
     final url = Uri.parse('$baseUrl/searchbook?nameofbook=$Query');

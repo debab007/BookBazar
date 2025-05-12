@@ -1,4 +1,5 @@
-import 'package:bookbazaar/api_service.dart';
+import 'package:bookbazaar/services/bookapi_service.dart';
+import 'package:bookbazaar/services/shared_pref_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,13 +62,14 @@ class _AddbookScreenState extends State<AddbookScreen> {
   }
 
   void _uploadBook() async {
+    final int UserID= await PreferenceHelper.getuserID();
     try {
       await ApiService.uploadBookData(
         title: _titleController.text,
         author: _authorController.text,
         category: 'Fiction',
         price: _priceController.text,
-        sellerId: '200',
+        sellerId: UserID.toString(),
         imageFile: _selectedImage!,
       );
       ScaffoldMessenger.of(context).clearSnackBars();
@@ -145,21 +147,21 @@ class customised_textfield extends StatelessWidget {
   Widget build(BuildContext context) {
     Icon? icon;
     TextInputType? keyboardType;
-    //TextEditingController _Controller= TextEditingController();
+    
     if (labeltext == "Title") {
       icon = Icon(FontAwesomeIcons.book);
-      //TextEditingController _Controller= _titleController;
+   
     }
     if (labeltext == "Author") {
       icon = Icon(FontAwesomeIcons.penToSquare);
-      //TextEditingController _Controller= _authorController;
+      
     }
     if (labeltext == "Description") {
       icon = Icon(FontAwesomeIcons.file);
     }
     if (labeltext == "Price") {
       icon = Icon(FontAwesomeIcons.rupeeSign);
-      //TextEditingController _Controller= _priceController;
+      
       keyboardType = TextInputType.numberWithOptions(decimal: true);
     }
 

@@ -1,6 +1,6 @@
-import 'package:bookbazaar/screens/BookDetailsScreen.dart';
 import 'package:bookbazaar/screens/addbook_screen.dart';
 import 'package:bookbazaar/screens/home_screen.dart';
+import 'package:bookbazaar/screens/userprofileScreen.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {
@@ -15,8 +15,8 @@ class _TabScreenState extends State<TabScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     AddbookScreen(),
-    Bookdetailsscreen(),
-    Bookdetailsscreen(),
+    Userprofilescreen(),
+    Userprofilescreen(),
   ];
 
   void _selectab(int index) {

@@ -1,4 +1,4 @@
-import 'package:bookbazaar/api_service.dart';
+import 'package:bookbazaar/services/bookapi_service.dart';
 import 'package:bookbazaar/models/book_model.dart';
 import 'package:bookbazaar/screens/SearchResultScreen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,7 @@ class SearchBarWidget extends StatelessWidget {
   void _searchBook(BuildContext context, String Query) async {
     try {
       List<Book> books = await ApiService.seachBook(Query);
+      print("Clled");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (ctx) => Searchresultscreen(books: books)),
@@ -18,7 +19,7 @@ class SearchBarWidget extends StatelessWidget {
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text("Error")));
+      ).showSnackBar(SnackBar(content: Text("Error :$e")));
     }
   }
 
