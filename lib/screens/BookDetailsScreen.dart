@@ -2,6 +2,7 @@ import 'package:bookbazaar/models/book_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class BookDetailsScreen extends StatelessWidget {
@@ -59,14 +60,21 @@ class BookDetailsScreen extends StatelessWidget {
             // Price
             Text(
               '₹${book.price}',
-              style: TextStyle(fontSize: 22, color: Colors.green[700]),
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.green[700],
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 10),
 
             // Book Condition
             Row(
               children: [
-                Icon(Icons.info_outline, color: Colors.blue),
+                Icon(
+                  Icons.info_outline,
+                  color: const Color.fromARGB(255, 231, 63, 25),
+                ),
                 SizedBox(width: 8),
                 Text(
                   'Condition: ${book.condition}',
@@ -131,9 +139,40 @@ class BookDetailsScreen extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             // Hook this with your checkout or cart logic
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text("Proceed to Buy")));
+            showModalBottomSheet(
+              context: context,
+              builder: (ctx) {
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      RippleAnimation(
+                        color: const Color.fromARGB(147, 76, 175, 79),
+                        delay: const Duration(milliseconds: 300),
+                        repeat: false,
+                        minRadius: 75,
+                        maxRadius: 140,
+                        ripplesCount: 6,
+                        duration: const Duration(milliseconds: 6 * 300),
+
+                        child: Icon(
+                          FontAwesomeIcons.circleCheck,
+                          color: Colors.green,
+                          size: 36,
+                        ),
+                      ),
+                      Text(
+                        "Order Confirmed",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.deepPurple,

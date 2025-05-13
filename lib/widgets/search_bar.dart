@@ -9,7 +9,6 @@ class SearchBarWidget extends StatelessWidget {
   void _searchBook(BuildContext context, String Query) async {
     try {
       List<Book> books = await ApiService.seachBook(Query);
-      print("Clled");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (ctx) => Searchresultscreen(books: books)),

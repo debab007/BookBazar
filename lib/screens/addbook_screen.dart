@@ -16,7 +16,7 @@ TextEditingController getControllerForLabel(String label) {
     case "Author":
       return _authorController;
     case "Description":
-      return _authorController;
+      return _descriptionController;
     case "Price":
       return _priceController;
     default:

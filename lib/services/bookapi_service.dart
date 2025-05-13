@@ -7,8 +7,22 @@ import 'package:bookbazaar/models/book_model.dart';
 class ApiService {
   static const String baseUrl = 'http://192.168.17.8:7000/api/book';
 
-  static Future<List<Book>> seachBook(String Query) async {
+  static Future<List<Book>> seachBook(String Query) async 
+  {
     final url = Uri.parse('$baseUrl/searchbook?nameofbook=$Query');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((json) => Book.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load books Response Body: ${response.body}');
+      }
+  }
+
+  static Future<List<Book>> myUploadedBook(int UserID) async 
+  {
+    final url = Uri.parse('$baseUrl/uploadedbooks?userID=$UserID');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

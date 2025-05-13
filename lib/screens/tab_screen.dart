@@ -1,3 +1,4 @@
+import 'package:bookbazaar/screens/Myuploads_screen.dart';
 import 'package:bookbazaar/screens/addbook_screen.dart';
 import 'package:bookbazaar/screens/home_screen.dart';
 import 'package:bookbazaar/screens/userprofileScreen.dart';
@@ -15,7 +16,7 @@ class _TabScreenState extends State<TabScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     AddbookScreen(),
-    Userprofilescreen(),
+    MyuploadsScreen(),
     Userprofilescreen(),
   ];
 
@@ -44,8 +45,8 @@ class _TabScreenState extends State<TabScreen> {
             label: "Sell Book",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message_outlined),
-            label: "Chat",
+            icon: Icon(Icons.upload_file),
+            label: "My Uploads",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle_outlined),
